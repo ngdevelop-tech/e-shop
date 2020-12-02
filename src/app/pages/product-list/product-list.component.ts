@@ -13,24 +13,38 @@ export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[];
   loading: boolean;
   subscription: Subscription;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {
+    this.subscription = new Subscription();
+   }
 
   ngOnInit(): void {
-    this.initializeProducts();
+    this.reloadProducts();
   }
 
-  initializeProducts(){
+  reloadProducts(){
     console.log('ngOnInit Started...')
     this.loading = true;
-    this.subscription = this.productService.getProducts().subscribe(products=> {
+    this.subscription.add(this.productService.getProducts().subscribe(products=> {
       this.products = products;
       this.loading = false;
-    });
+    }));
     console.log('ngOnInit Completed...')
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+
+  onDelete(id: number){
+    console.log(id, 'needs to be deleted...');
+    this.productService.deleteProduct(id).subscribe(result=> {
+      if(result){
+        console.log(`${id} is deleted...`);
+        this.reloadProducts();
+      }else{
+        console.log(`${id} not found...`);
+      }
+    })
   }
 
 }

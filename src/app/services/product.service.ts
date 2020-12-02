@@ -35,11 +35,22 @@ export class ProductService {
     // }
     // console.log('Get Products Completed...');
     return of(this.products).pipe(
-      delay(5000)
+      delay(1000)
     );
   }
 
   addProduct(product: Product){
+
+  }
+
+  deleteProduct(id: number){
+    let index = this.products.findIndex(p=> p.id === id );
+    if(index !== -1){
+      this.products.splice(index, 1);
+      return of({success: true});
+    }else{
+      return of({success: false});
+    }
 
   }
 }

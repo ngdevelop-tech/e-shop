@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductComponent } from './pages/components/product/product.component';
 
 const routes: Routes= [
   { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes= [
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

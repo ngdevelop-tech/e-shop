@@ -5,13 +5,9 @@
         <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
     </div>
     <div class="col-md-4" *ngFor="let p of products">
-        <div class="card border-primary">
-          <img class="card-img-top" [src]="p.imgUrl" alt="">
-          <div class="card-body">
-            <h4 class="card-title">{{p.name}}</h4>
-            <p class="card-text">{{p.model}}</p>
-            <p class="card-text">{{p.price | currency : 'INR'}}</p>
-          </div>
-        </div>
+      <app-product [product]="p" (delete)="onDelete($event)" ></app-product>
+    </div>
+    <div class="col-md-12" *ngIf="products.length === 0">
+       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Product List is Empty
     </div>
 </div>

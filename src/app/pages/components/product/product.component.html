@@ -1,0 +1,11 @@
+<div class="card border-primary">
+    <img class="card-img-top" [src]="product.imgUrl" alt="">
+    <div class="card-body">
+      <h4 class="card-title bg-primary text-white">{{product.name}}</h4>
+      <p class="card-text">{{product.model}}</p>
+      <p class="card-text">{{product.price | currency : 'INR'}}</p>
+      <button type="button" class="btn btn-danger" (click)="deleteAction()">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
